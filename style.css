@@ -39,13 +39,13 @@ body {
     background: linear-gradient(135deg, #00b4db, #0083b0);
     transition: background 0.5s ease;
     position: relative;
-    overflow-x: hidden;
+    overflow: hidden;
     padding: 20px;
 }
 
 body::before {
     content: '';
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -80,13 +80,13 @@ body.background-loaded::before {
     text-align: center;
     max-height: 90vh;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;  /* Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
 .weather-app::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari, Opera */
+    display: none;
 }
 
 .search-form {
@@ -95,24 +95,6 @@ body.background-loaded::before {
     justify-content: center;
     margin-bottom: 30px;
     width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    padding: 15px 0;
-    margin: -15px 0 30px 0;
-}
-
-.search-form::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -30px;
-    right: -30px;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(8px);
-    z-index: -1;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 input[type="text"] {
@@ -122,21 +104,19 @@ input[type="text"] {
     border-radius: 25px;
     font-size: 1rem;
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     text-align: center;
-    backdrop-filter: blur(4px);
 }
 
 input[type="text"]:focus {
     outline: none;
-    border-color: rgba(0, 131, 176, 0.5);
-    box-shadow: 0 0 15px rgba(0, 131, 176, 0.2);
-    background: rgba(255, 255, 255, 0.9);
+    border-color: #0083b0;
+    box-shadow: 0 0 15px rgba(0, 131, 176, 0.3);
 }
 
 .search-btn {
-    background: linear-gradient(135deg, rgba(0, 180, 219, 0.9), rgba(0, 131, 176, 0.9));
+    background: linear-gradient(135deg, #00b4db, #0083b0);
     border: none;
     padding: 15px;
     border-radius: 50%;
@@ -148,13 +128,11 @@ input[type="text"]:focus {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4px);
 }
 
 .search-btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(0, 131, 176, 0.3);
-    background: linear-gradient(135deg, rgba(0, 180, 219, 1), rgba(0, 131, 176, 1));
+    box-shadow: 0 0 20px rgba(0, 131, 176, 0.4);
 }
 
 .city-date-section {
@@ -320,21 +298,8 @@ input[type="text"]:focus {
 
 /* Responsive adjustments */
 @media (max-width: 480px) {
-    .search-form::before {
-        left: -20px;
-        right: -20px;
-        background: rgba(255, 255, 255, 0.3);
-    }
-    
-    .search-form {
-        padding: 10px 0;
-        margin: -10px 0 20px 0;
-    }
-    
     .weather-app {
         padding: 20px;
-        margin: 10px auto;
-        max-height: 85vh;
     }
     
     .temperature-info .temp {
@@ -352,24 +317,12 @@ input[type="text"]:focus {
     
     .additional-info {
         grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    input[type="text"] {
-        padding: 12px 15px;
-        font-size: 0.9rem;
-        background: rgba(255, 255, 255, 0.6);
-    }
-    
-    .search-btn {
-        padding: 12px;
     }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
     .weather-app {
         max-width: 450px;
-        margin: 15px auto;
     }
     
     .temperature-info .temp {
